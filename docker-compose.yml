@@ -1,0 +1,28 @@
+version: '2.1'
+
+services:
+
+  fs:
+    image: ${IMAGE}:${IMAGE_VER}
+    restart: always
+    networks:
+      - lan
+    labels:
+      - "traefik.enable=true"
+      - "traefik.port=9000"
+      - "traefik.frontend.rule=Host:${APP_SITE}"
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+      - ../../data/minio:/data
+      - ../../data/minio-conf:/root/.minio
+    command:
+      server /data
+    environment:
+      - MINIO_ACCESS_KEY=${ACCESS_KEY}
+      - MINIO_SECRET_KEY=${SECRET_KEY}
+
+networks:
+  lan:
+    external:
+      name: ${DCAPE_NET}
