@@ -21,6 +21,9 @@ DCAPE_PROJECT_NAME ?= dcape
 # dcape network attach to
 DCAPE_NET          ?= $(DCAPE_PROJECT_NAME)_default
 
+# Docker-compose image tag
+DC_VER             ?= 1.14.0
+
 define CONFIG_DEF
 # ------------------------------------------------------------------------------
 # Minio settings
@@ -92,7 +95,7 @@ dc: docker-compose.yml
 	  -v /var/run/docker.sock:/var/run/docker.sock \
 	  -v $$PWD:$$PWD \
 	  -w $$PWD \
-	  docker/compose:1.14.0 \
+	  docker/compose:$(DC_VER) \
 	  -p $$PROJECT_NAME \
 	  $(CMD)
 
