@@ -13,7 +13,7 @@ SECRET_KEY         ?= $(shell < /dev/urandom tr -dc A-Za-z0-9 | head -c40; echo)
 # Docker image name
 IMAGE              ?= minio/minio
 # Docker image tag
-IMAGE_VER          ?= RELEASE.2017-09-29T19-16-56Z
+IMAGE_VER          ?= RELEASE.2018-04-04T05-20-54Z
 # Docker-compose project name (container name prefix)
 PROJECT_NAME       ?= dcape
 # dcape container name prefix
